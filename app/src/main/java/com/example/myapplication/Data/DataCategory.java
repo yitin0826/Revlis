@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataCategory {
+    /** Category的資料列 **/
+
     private String img;
     private String cate;
 

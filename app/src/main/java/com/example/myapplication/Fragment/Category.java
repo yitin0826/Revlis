@@ -44,6 +44,7 @@ public class Category extends Fragment implements CategoryAdapter.OnItemListener
         return view;
     }
 
+    /** Category資料添加 **/
     private void RecyclerViewCategory(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recycler_category.setLayoutManager(linearLayoutManager);
@@ -63,6 +64,7 @@ public class Category extends Fragment implements CategoryAdapter.OnItemListener
         recycler_category.setAdapter(adapter_category);
     }
 
+    /** Detail資料添加 **/
     private void RecyclerViewDetail(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycler_detail.setLayoutManager(linearLayoutManager);

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextUtil {
+    /** SignUp頁面輸入值檢測 **/
 
     public static boolean isValidEmailFormat(String email){
         if (email == null){

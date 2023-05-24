@@ -40,6 +40,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
     implementation 'com.google.android:flexbox:2.0.1'
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     testImplementation 'junit:junit:4.13.2'

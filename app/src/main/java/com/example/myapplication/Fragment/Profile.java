@@ -37,6 +37,7 @@ public class Profile extends Fragment {
         return view;
     }
 
+    /** Profile資料 **/
     public void RecyclerViewProfile(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycler_profile.setLayoutManager(linearLayoutManager);

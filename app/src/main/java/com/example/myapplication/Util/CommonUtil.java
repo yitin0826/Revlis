@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommonUtil {
+    /** SignUp頁面 **/
 
     /** 取消checkBox選取 **/
     public static void unCheck(List<CheckBox> checkBoxList){
@@ -14,6 +15,7 @@ public class CommonUtil {
         }
     }
 
+    /** 獲取CheckBox的單選值 **/
     public static String getOne(List<CheckBox> checkBoxList){
         String tag = "";
         for (CheckBox checkBox : checkBoxList){
@@ -28,6 +30,7 @@ public class CommonUtil {
         return tag;
     }
 
+    /** 獲取CheckBox的複選值 **/
     public static List<String> getMany(List<CheckBox> checkBoxList){
         List<String> sb = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList){

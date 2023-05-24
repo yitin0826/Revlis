@@ -1,6 +1,7 @@
 package com.example.myapplication.Data;
 
 public class DataFeature {
+    /** Homepage的Feature資料列 **/
 
     private String name_feature;
     private Double val_feature;

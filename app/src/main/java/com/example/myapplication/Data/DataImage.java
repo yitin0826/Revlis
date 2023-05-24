@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataImage {
+    /** 圖片輪播的資料列 **/
 
     public String url;
     public Integer imageRes;

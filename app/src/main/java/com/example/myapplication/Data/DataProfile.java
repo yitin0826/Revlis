@@ -1,6 +1,8 @@
 package com.example.myapplication.Data;
 
 public class DataProfile {
+    /** Profile的資料列 **/
+
     private String profile_title,profile_data;
 
     public DataProfile(String title, String data){
