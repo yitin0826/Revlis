@@ -1,172 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background_dialog2">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_180"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/progress_circleshape"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progress_bar"
+        android:textAlignment="center"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="....."
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_below="@+id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txt_hbpSBP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:text="hbp_SBP"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_hbpSBP"
+            android:id="@+id/txt_end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_hbpSBP"
-            android:background="@drawable/background_spinner"/>
-
-        <TextView
-            android:id="@+id/txt_hbpDBP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_below="@id/spinner_hbpSBP"
-            android:text="hbp_DBP"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_hbpDBP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_hbpDBP"
-            android:background="@drawable/background_spinner"/>
-
-        <TextView
-            android:id="@+id/txt_morningDIA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_below="@id/spinner_hbpDBP"
-            android:text="Morning_DIA"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_morningDIA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_morningDIA"
-            android:background="@drawable/background_spinner"/>
-
-        <TextView
-            android:id="@+id/txt_aftermealDIA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_below="@id/spinner_morningDIA"
-            android:text="Aftermeal_DIA"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_aftermealDIA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_aftermealDIA"
-            android:background="@drawable/background_spinner"/>
-
-        <TextView
-            android:id="@+id/txt_mealStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_below="@id/spinner_aftermealDIA"
-            android:text="Meal_Status"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_mealStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_mealStatus"
-            android:background="@drawable/background_spinner"/>
-
-        <TextView
-            android:id="@+id/txt_medicationStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_below="@id/spinner_mealStatus"
-            android:text="MedicationStatus"
-            android:textSize="@dimen/sp_15"
-            android:fontFamily="@font/glowsanssc_condensed_book"/>
-
-        <Spinner
-            android:id="@+id/spinner_medicationStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginEnd="@dimen/dp_50"
-            android:layout_below="@id/txt_medicationStatus"
-            android:background="@drawable/background_spinner"/>
-
-        <com.daimajia.numberprogressbar.NumberProgressBar
-            android:id="@+id/progress_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginStart="@dimen/dp_30"
-            android:layout_marginEnd="@dimen/dp_30"
-            android:layout_below="@+id/spinner_medicationStatus"
-            custom:progress_unreached_color="#CCCCCC"
-            custom:progress_reached_color="@color/green"
-            custom:progress_unreached_bar_height="@dimen/dp_1"
-            custom:progress_reached_bar_height="@dimen/dp_2"
-            custom:progress_text_size="@dimen/sp_18"
-            custom:progress_text_color="@color/green"
-            custom:progress_max="100"/>
+            android:text="測量結束，"
+            android:textSize="@dimen/sp_20"
+            android:fontFamily="@font/jf_openhuninn"
+            android:textColor="@color/black"
+            android:visibility="invisible"/>
 
         <Button
-            android:id="@+id/btn_CountCancel"
+            android:id="@+id/btn_resultconfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_below="@+id/progress_line"
-            android:background="@drawable/background_button"
-            android:text="取    消"
-            android:textSize="@dimen/dp_17"/>
+            android:paddingLeft="0dp"
+            android:backgroundTint="@null"
+            android:background="@null"
+            android:text="確認結果"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:fontFamily="@font/jf_openhuninn"
+            android:visibility="invisible"/>
 
-        <Button
-            android:id="@+id/btn_CountSure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_below="@+id/progress_line"
-            android:layout_alignEnd="@+id/spinner_medicationStatus"
-            android:background="@drawable/background_button"
-            android:text="確    認"
-            android:textSize="@dimen/dp_17"/>
+    </LinearLayout>
 
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

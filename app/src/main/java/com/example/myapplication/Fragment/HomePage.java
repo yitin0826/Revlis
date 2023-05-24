@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.DisplayMetrics;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class HomePage extends Fragment {
     private RecyclerView recycler_feature;
     private RecyclerView.Adapter adapter_feature;
     private ChooserDialog chooserDialog;
-    private Dialog dialogFeature,dialogCount;
+    private Dialog dialogFeature, dialogValueInput,dialogCount;
     private String filePath,xName;
     private List<String> checkFeature = new ArrayList<>();
     private NumberProgressBar progress_line;
@@ -139,6 +140,7 @@ public class HomePage extends Fragment {
                                 Log.d("xName",xName);
                                 txt_filename.setText(xName);
                                 txt_filename.setTextSize(16);
+                                buildValueInputDialog();
                             }
                         })
                         .withOnBackPressedListener(dialog -> chooserDialog.goBack())
@@ -183,7 +185,7 @@ public class HomePage extends Fragment {
                     dialogFeature.dismiss();
                     break;
                 case R.id.btn_CountCancel:
-                    dialogCount.dismiss();
+                    dialogValueInput.dismiss();
                     break;
                 case R.id.btn_CountSure:
                     break;
@@ -191,7 +193,7 @@ public class HomePage extends Fragment {
         }
     };
 
-    /** 新增Feature Dialog **/
+    /** 建立Feature Dialog **/
     public void buildFeatureDialog(){
         dialogFeature = new Dialog(getActivity(),R.style.custom_dialog);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add,null);
@@ -215,11 +217,11 @@ public class HomePage extends Fragment {
         btn_dialogCancel.setOnClickListener(lis);
     }
 
-    /** 新增Count Dialog **/
-    public void buildCountDialog(){
-        dialogCount = new Dialog(getActivity(),R.style.custom_dialog);
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_count, null);
-        dialogCount.setContentView(dialogView);
+    /** 建立計算所需值輸入 Dialog **/
+    public void buildValueInputDialog(){
+        dialogValueInput = new Dialog(getActivity(),R.style.custom_dialog);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_inputvalue, null);
+        dialogValueInput.setContentView(dialogView);
         spinner_hdpSBP = dialogView.findViewById(R.id.spinner_hbpSBP);
         spinner_hdpDBP = dialogView.findViewById(R.id.spinner_hbpDBP);
         spinner_morningDIA = dialogView.findViewById(R.id.spinner_morningDIA);
@@ -229,14 +231,15 @@ public class HomePage extends Fragment {
         btn_CountCancel = dialogView.findViewById(R.id.btn_CountCancel);
         btn_CountSure = dialogView.findViewById(R.id.btn_CountSure);
         progress_line = dialogView.findViewById(R.id.progress_line);
-        dialogCount.show();
+        dialogValueInput.show();
         setSpinnerValue();
-        WindowManager.LayoutParams lp = dialogCount.getWindow().getAttributes();
+        WindowManager.LayoutParams lp = dialogValueInput.getWindow().getAttributes();
         WindowManager windowManager = getActivity().getWindowManager();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-        lp.width = (int)(displayMetrics.widthPixels*0.5);
-        lp.height = (int)(displayMetrics.heightPixels*0.8);
+        Display display = windowManager.getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        lp.width = (int)(width * 0.5);
+        lp.height = (int)(height * 0.5);
         btn_CountCancel.setOnClickListener(lis);
         btn_CountSure.setOnClickListener(lis);
         Timer timer = new Timer();
@@ -251,6 +254,41 @@ public class HomePage extends Fragment {
                 });
             }
         },1000,100);
+    }
+
+    /** 建立計算進度條 Dialog **/
+    public void buildCountDialog(){
+        dialogCount = new Dialog(getActivity(),R.style.custom_dialog);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_count, null);
+        dialogCount.setContentView(dialogView);
+        /** 宣告UI **/
+        ProgressBar progress_bar = dialogView.findViewById(R.id.progress_bar);
+        TextView progress_text = dialogView.findViewById(R.id.progress_text);
+        Button btn_resultconfirm = dialogView.findViewById(R.id.btn_resultconfirm);
+        TextView txt_end = dialogView.findViewById(R.id.txt_end);
+        dialogCount.show();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int i=0;
+                if (i<=100){
+                    progress_text.setText(""+i+"%");
+                    progress_bar.setProgress(i);
+                    i+=1;
+                    handler.postDelayed(this,900);
+                }
+                else {
+                    handler.removeCallbacks(this);
+                }
+
+                if (i>100){
+                    txt_end.setVisibility(View.VISIBLE);
+                    btn_resultconfirm.setVisibility(View.VISIBLE);
+                    btn_resultconfirm.setOnClickListener(lis);
+                }
+            }
+        },200);
     }
 
     /** Spinner值設定 **/
