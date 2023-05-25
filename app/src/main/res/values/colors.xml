@@ -10,4 +10,8 @@
     <color name="green">#6D8B75</color>
     <color name="yellow">#F2E5CC</color>
     <color name="shironeri">#FCFAF2</color>
+
+    <color name="colorPrimary">#1866A4</color>
+    <color name="colorPrimaryDark">#14588C</color>
+    <color name="colorAccent">#1B75BB</color>
 </resources>

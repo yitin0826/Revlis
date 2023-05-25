@@ -16,14 +16,17 @@
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true"/>
 
+
     <LinearLayout
         android:id="@+id/linear_signin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/sign_background"
         android:layout_below="@+id/img_signin"
         android:orientation="vertical">
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +45,64 @@
             android:text="量測登入以繼續"
             android:fontFamily="@font/jf_openhuninn"/>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_250"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"/>
+
+            <FrameLayout
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:layout_alignBottom="@id/lineChart"
+                android:layout_alignEnd="@id/lineChart">
+
+                <TextureView
+                    android:id="@+id/texture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:screenOrientation="portrait" />
+
+                <View
+                    android:id="@+id/overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_oval"/>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/heartBeatCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/warn"
+            android:textSize="@dimen/dp_20"
+            android:textAlignment="center"
+            android:padding="@dimen/dp_5"/>
+
+        <Button
+            android:id="@+id/btn_restart"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@drawable/background_button"
+            android:fontFamily="@font/rajdhani_bold"
+            android:padding="5dp"
+            android:text="重新量測"
+            android:textColor="@color/sign_color"
+            android:textSize="@dimen/sp_22" />
+
     </LinearLayout>
+
+
 
 </RelativeLayout>
