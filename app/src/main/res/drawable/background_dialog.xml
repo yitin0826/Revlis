@@ -8,7 +8,7 @@
         </shape>
     </item>
 
-    <item android:top="@dimen/dp_55">
+    <item android:top="@dimen/dp_45">
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <corners

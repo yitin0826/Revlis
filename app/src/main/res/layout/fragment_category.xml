@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.Category"
     android:orientation="vertical"
-    android:background="@color/shironeri">
+    android:background="@color/shironeri"
+    tools:context=".Fragment.Category">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_category"
@@ -21,13 +20,10 @@
         android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/background_detail">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_detail"
+        <FrameLayout
+            android:id="@+id/container_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp_30"
-            android:layout_marginStart="@dimen/dp_20"
-            android:layout_marginEnd="@dimen/dp_20"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

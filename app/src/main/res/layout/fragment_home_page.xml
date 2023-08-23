@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragment.HomePage"
+    tools:context="com.example.revlisapp.Fragment.HomePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/shironeri"
@@ -45,10 +45,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/corporate_logo_rounded"
+                    android:fontFamily="@font/rajdhani_bold"
                     android:text="Upload"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/sp_22"
+                    android:textSize="@dimen/sp_28"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dp_10"
-                        android:fontFamily="@font/glowsanssc_condensed_book"
+                        android:fontFamily="@font/glowsanssc_condensed_medium"
                         android:text="尚未選擇檔案"
                         android:textSize="@dimen/sp_15" />
 
@@ -92,7 +92,7 @@
                         android:text="選   擇"
                         android:textSize="@dimen/sp_15"
                         android:textColor="@color/shironeri"
-                        android:fontFamily="@font/glowsanssc_condensed_book"
+                        android:fontFamily="@font/glowsanssc_condensed_medium"
                         android:background="@drawable/background_button2"
                         android:minHeight="0dp"/>
 
@@ -108,7 +108,7 @@
                         android:text="計   算"
                         android:textSize="@dimen/sp_15"
                         android:textColor="@color/shironeri"
-                        android:fontFamily="@font/glowsanssc_condensed_book"
+                        android:fontFamily="@font/glowsanssc_condensed_medium"
                         android:background="@drawable/background_button2"
                         android:minHeight="0dp"/>
 
@@ -129,10 +129,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/corporate_logo_rounded"
+                    android:fontFamily="@font/rajdhani_bold"
                     android:text="Feature"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/sp_22"
+                    android:textSize="@dimen/sp_28"
                     android:textStyle="bold" />
 
                 <ImageButton
@@ -176,10 +176,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/corporate_logo_rounded"
+                    android:fontFamily="@font/rajdhani_bold"
                     android:text="Knowledge"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/sp_22"
+                    android:textSize="@dimen/sp_28"
                     android:textStyle="bold" />
 
             </RelativeLayout>

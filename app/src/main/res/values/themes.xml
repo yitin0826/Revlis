@@ -53,7 +53,7 @@
     <style name="select_flex_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/dp_4</item>
+        <item name="android:layout_marginLeft">@dimen/dp_6</item>
         <item name="android:layout_marginRight">@dimen/dp_4</item>
         <item name="android:layout_marginTop">@dimen/dp_4</item>
         <item name="android:layout_marginBottom">@dimen/dp_4</item>
@@ -66,7 +66,17 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/sp_15</item>
         <item name="android:textColor">@drawable/check_txt</item>
-        <item name="fontFamily">@font/glowsanssc_condensed_book</item>
+        <item name="fontFamily">@font/glowsanssc_condensed_medium</item>
     </style>
 
+    <style name="MonthDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="dialogWindowAnim" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/push_in</item>
+        <item name="android:windowExitAnimation">@anim/push_out</item>
+    </style>
+    
 </resources>

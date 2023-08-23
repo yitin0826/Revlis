@@ -23,10 +23,10 @@
         android:id="@+id/txt_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
-        android:text="AI"
+        android:text="生理指數"
+        android:textSize="@dimen/sp_18"
         android:textColor="@color/green"
-        android:fontFamily="@font/shipporimincho_bold"
+        android:fontFamily="@font/glowsanssc_condensed_medium"
         android:layout_gravity="center" />
 
 </LinearLayout>
