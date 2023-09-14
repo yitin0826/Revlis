@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.example.revlisapp.R;
 import com.example.revlisapp.Util.CommonUtil;
@@ -36,9 +38,10 @@ public class Info extends Fragment {
     @BindViews({R.id.check_sexMale, R.id.check_sexFemale})
     List<CheckBox> radiosSex;
     private String checkedSex = "";
+    private String phone,height,weight,age,sex;
 
     public interface DataReturn{
-        public void getResult(String value);
+        void getResult(String value);
     }
 
     @Override
@@ -50,12 +53,16 @@ public class Info extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_info, container, false);
+        Bundle bundle = getArguments();
         edit_userName = view.findViewById(R.id.edit_userName);
         edit_phone = view.findViewById(R.id.edit_phone);
         edit_birth = view.findViewById(R.id.edit_birth);
         edit_height = view.findViewById(R.id.edit_height);
         edit_weight = view.findViewById(R.id.edit_weight);
         edit_waist = view.findViewById(R.id.edit_waist);
+        if (bundle != null){
+            setValue(bundle);
+        }
         createMonthDialog(edit_birth);
         ButterKnife.bind(this,view);
         return view;
@@ -90,6 +97,18 @@ public class Info extends Fragment {
                 edt.setText(selected);
             }
         };
+    }
+
+    private void setValue(Bundle bundle){
+        phone = bundle.getString("phone");
+        height = bundle.getString("height");
+        weight = bundle.getString("weight");
+        age = bundle.getString("age");
+        sex = bundle.getString("sex");
+        edit_phone.setText(phone);
+        edit_phone.setFocusable(false);
+        edit_height.setText(height);
+        edit_weight.setText(weight);
     }
 
     public void sendValue(DataReturn dataReturn){

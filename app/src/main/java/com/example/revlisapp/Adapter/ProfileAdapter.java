@@ -14,17 +14,19 @@ import com.example.revlisapp.R;
 import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
+    private final OnItemListener onItemListener;
     ArrayList<DataProfile> profileList;
 
-    public ProfileAdapter(ArrayList<DataProfile> profileList){
+    public ProfileAdapter(ArrayList<DataProfile> profileList, OnItemListener onItemListener){
         this.profileList = profileList;
+        this.onItemListener = onItemListener;
     }
 
     @NonNull
     @Override
     public ProfileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate  = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_profile,parent,false);
-        return new ProfileViewHolder(inflate);
+        return new ProfileViewHolder(inflate, onItemListener);
     }
 
     @Override
@@ -38,13 +40,25 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         return profileList.size();
     }
 
-    public class ProfileViewHolder extends RecyclerView.ViewHolder {
-        private TextView txt_profileTitle,txt_profileData;
+    public interface OnItemListener{
+        void  onItemClick(int position);
+    }
 
-        public ProfileViewHolder(@NonNull View itemView) {
+    public class ProfileViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView txt_profileTitle,txt_profileData;
+        private ProfileAdapter.OnItemListener onItemListener;
+
+        public ProfileViewHolder(@NonNull View itemView, ProfileAdapter.OnItemListener onItemListener) {
             super(itemView);
             txt_profileTitle = itemView.findViewById(R.id.txt_profileTitle);
             txt_profileData = itemView.findViewById(R.id.txt_profileData);
+            this.onItemListener = onItemListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onItemListener.onItemClick(getAdapterPosition());
         }
     }
 }

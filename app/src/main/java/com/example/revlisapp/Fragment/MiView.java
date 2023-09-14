@@ -24,6 +24,7 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class MiView extends Fragment {
     private View view;
+    private ImageView img_ecg;
     private TextView txt_grade,txt_change,txt_beat,txt_diffuse;
     private ViewPager2 viewpager_compare;
     private CircleIndicator3 indicator_compare;
@@ -38,12 +39,14 @@ public class MiView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mi_view, container, false);
+        img_ecg = view.findViewById(R.id.img_ecg);
         txt_grade = view.findViewById(R.id.txt_grade);
         txt_change = view.findViewById(R.id.txt_change);
         txt_beat = view.findViewById(R.id.txt_beat);
         txt_diffuse = view.findViewById(R.id.txt_diffuse);
         viewpager_compare = view.findViewById(R.id.viewpager_compare);
         indicator_compare = view.findViewById(R.id.indicator_compare);
+        img_ecg.setImageResource(R.drawable.compare_af);
         setCompareImage();
         return view;
     }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.revlisapp.SignUpFragment.Habit;
 import com.example.revlisapp.SignUpFragment.Health;
@@ -24,10 +25,12 @@ import butterknife.ButterKnife;
 public class SignUpActivity extends AppCompatActivity {
 
     Button btn_nextPage,btn_upPage;
+    TextView txt_signUPtitle;
     ImageView img_signup,img_signUpback;
-    Info info = new Info();
-    Health health = new Health();
-    Habit habit = new Habit();
+    private Info info = new Info();
+    private Health health = new Health();
+    private Habit habit = new Habit();
+    private String page,phone,height,weight,age,sex,smoke,drink,disease,hbp,diabetes;
     private Fragment currentFragment;
     private FrameLayout container_signup;
     private FragmentManager fragmentManager;
@@ -46,14 +49,31 @@ public class SignUpActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("getStatus","stop");
+    }
+
     private void initWidget(){
+        Bundle bundle = getIntent().getExtras();
         img_signup = findViewById(R.id.img_signup);
         img_signUpback = findViewById(R.id.img_signUpback);
         btn_nextPage = findViewById(R.id.btn_nextPage);
         btn_upPage = findViewById(R.id.btn_upPage);
+        txt_signUPtitle = findViewById(R.id.txt_signUPtitle);
         container_signup = findViewById(R.id.container_signup);
+        if (bundle != null){
+            page = bundle.getString("page");
+            info.setArguments(bundle);
+            health.setArguments(bundle);
+            habit.setArguments(bundle);
+            Log.d("signupp", page);
+            img_signup.setImageResource(R.drawable.profile);
+        }else {
+            img_signup.setImageResource(R.drawable.sign_up2);
+        }
         fragmentManager = getSupportFragmentManager();
-        img_signup.setImageResource(R.drawable.sign_up2);
         img_signUpback.setImageResource(R.drawable.art);
         btn_upPage.setVisibility(View.INVISIBLE);
         btn_upPage.setClickable(false);
@@ -69,6 +89,34 @@ public class SignUpActivity extends AppCompatActivity {
     private void setFragment(){
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.container_signup,info);
+        transaction.add(R.id.container_signup,health);
+        transaction.add(R.id.container_signup,habit);
+        if (page != null){
+            if (page.equals("info")){
+                txt_signUPtitle.setText("個人資料 Profile");
+                transaction.hide(health);
+                transaction.hide(habit);
+                currentFragment = info;
+            }else if (page.equals("health")){
+                txt_signUPtitle.setText("健康調查 Health");
+                transaction.hide(info);
+                transaction.hide(habit);
+                currentFragment = health;
+                btn_upPage.setClickable(true);
+                btn_upPage.setVisibility(View.VISIBLE);
+            }else if (page.equals("habit")){
+                txt_signUPtitle.setText("生活習慣 Habit");
+                transaction.hide(health);
+                transaction.hide(info);
+                currentFragment = habit;
+                btn_upPage.setClickable(true);
+                btn_upPage.setVisibility(View.VISIBLE);
+                btn_nextPage.setText("確認修改");
+            }
+        }else {
+            transaction.hide(health);
+            transaction.hide(habit);
+        }
         transaction.commit();
     }
 
@@ -84,6 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                         currentFragment = info;
                         try {
                             FragmentHideShow(health);
+                            txt_signUPtitle.setText("健康調查 Health");
                             info.sendValue(new Info.DataReturn() {
                                 @Override
                                 public void getResult(String value) {
@@ -96,12 +145,20 @@ public class SignUpActivity extends AppCompatActivity {
                     }else if(nowFragment == health){
                         btn_upPage.setClickable(true);
                         btn_upPage.setVisibility(View.VISIBLE);
-                        btn_nextPage.setText("註冊");
+                        if (page != null){
+                            if (page == "habit"){
+                                btn_nextPage.setText("確認修改");
+                            }
+                        }else {
+                            btn_nextPage.setText("註冊");
+                        }
                         FragmentHideShow(habit);
+                        txt_signUPtitle.setText("生活習慣 Habit");
                     }else if(nowFragment == habit){
                         try {
                             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }catch (Exception e){
                             Log.e("errrr",e.toString());
                         }
@@ -111,10 +168,12 @@ public class SignUpActivity extends AppCompatActivity {
                     if (nowFragment == habit){
                         btn_nextPage.setText("下一頁");
                         FragmentHideShow(health);
+                        txt_signUPtitle.setText("健康調查 Health");
                     }else if(nowFragment == health){
                         btn_upPage.setClickable(false);
                         btn_upPage.setVisibility(View.INVISIBLE);
                         FragmentHideShow(info);
+                        txt_signUPtitle.setText("個人資料 Profile");
                     }
                     break;
             }
@@ -148,6 +207,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void getValue(){
 
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d("getStatus","destroy");
     }
 
 //    /** 判斷輸入欄是否空白 **/

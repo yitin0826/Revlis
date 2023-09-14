@@ -7,6 +7,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -68,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container_all,new Record()).commit();
                     return true;
                 case R.id.category:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container_all,new Category()).commit();
+                    try{
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_all,new Category()).commit();
+                    }catch (Exception e){
+                        Log.e("runFragment",e.toString());
+                    }
                     return true;
                 case R.id.profile:
                     getSupportFragmentManager().beginTransaction().replace(R.id.container_all,new Profile()).commit();

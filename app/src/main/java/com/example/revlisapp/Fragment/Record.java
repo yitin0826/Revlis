@@ -5,9 +5,12 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,17 +18,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 
 import com.example.revlisapp.Adapter.RecordAdapter;
 import com.example.revlisapp.Data.DataRecord;
 import com.example.revlisapp.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Record extends Fragment implements RecordAdapter.OnItemListener{
 
@@ -36,6 +44,10 @@ public class Record extends Fragment implements RecordAdapter.OnItemListener{
     private RecyclerView recycler_record;
     private RecyclerView.Adapter adapter_record;
     private View view;
+    Category category = new Category();
+    private Fragment currentFragment;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
 
     @Override
@@ -51,6 +63,7 @@ public class Record extends Fragment implements RecordAdapter.OnItemListener{
         radiobtn_o2n = view.findViewById(R.id.radiobtn_o2n);
         radiobtn_n2o = view.findViewById(R.id.radiobtn_n2o);
         recycler_record = view.findViewById(R.id.recycler_record);
+        fragmentManager = getActivity().getSupportFragmentManager();
         createMonthDialog(edit_month);
         RecyclerViewRecord();
 //        recycler_category = view.findViewById(R.id.recycler_category);
@@ -98,7 +111,40 @@ public class Record extends Fragment implements RecordAdapter.OnItemListener{
 
     @Override
     public void onItemClick(int position) {
+        Record record = new Record();
+        currentFragment = record;
+        BottomNavigationView navigationView = getActivity().findViewById(R.id.navigationView);
+        try {
+            FragmentHideShow(category);
+            navigationView.setSelectedItemId(R.id.category);
+        }catch (Exception e){
+            Log.e("uuuuute",e.toString());
+        }
+    }
 
+    private Fragment checkFragment(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        List<Fragment> fragments = fm.getFragments();
+        for (Fragment fragment:fragments){
+            if (fragment != null && fragment.isVisible()){
+                return fragment;
+            }
+        }
+        return null;
+    }
+
+    private void FragmentHideShow(Fragment fg){
+        fragmentManager = getActivity().getSupportFragmentManager();
+        transaction= fragmentManager.beginTransaction();
+        if(!fg.isAdded()){
+            transaction.hide(currentFragment);
+            transaction.add(R.id.container_all,fg);
+        }else{
+            transaction.hide(currentFragment);
+            transaction.show(fg);
+        }
+        currentFragment=fg;
+        transaction.commit();
     }
 
     /** Category資料添加 **/

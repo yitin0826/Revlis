@@ -93,8 +93,8 @@ public class SignInActivity extends AppCompatActivity {
     private LineChart chart;
     private Thread chartThread;
     //IQR
-    private FilterAndIQR filterAndIQR;
-    private JsonUpload jsonUpload;
+//    private FilterAndIQR filterAndIQR;
+//    private JsonUpload jsonUpload;
 
     long[] outlierRRI;
     int fullAvgRed, fullAvgGreen, fullAvgBlue;
@@ -113,8 +113,8 @@ public class SignInActivity extends AppCompatActivity {
         heartBeatCount = findViewById(R.id.heartBeatCount);
 //        scv_text = findViewById(R.id.scv_text);
         CameraView.setSurfaceTextureListener(textureListener);
-        filterAndIQR = new FilterAndIQR();
-        jsonUpload = new JsonUpload();
+//        filterAndIQR = new FilterAndIQR();
+//        jsonUpload = new JsonUpload();
 
         chart = findViewById(R.id.lineChart);
         initChart();
@@ -385,7 +385,7 @@ public class SignInActivity extends AppCompatActivity {
         for (int i = 5; i < time_dist.length - 1; i++) {
             time_dist[i] = mTimeArray[i + 1] - mTimeArray[i];
         }
-        outlierRRI = filterAndIQR.IQR(time_dist);//去掉離群值
+//        outlierRRI = filterAndIQR.IQR(time_dist);//去掉離群值
 
         //calcBPM
         long[] getBPMOutlier = outlierRRI;
@@ -394,13 +394,13 @@ public class SignInActivity extends AppCompatActivity {
         heart_rate_bpm = 60000 / med;
 
         //calcRMSSD_SDNN
-        double rmssd = filterAndIQR.calculateRMSSD(outlierRRI);
-        double sdnn = filterAndIQR.calculateSDNN(outlierRRI);
+//        double rmssd = filterAndIQR.calculateRMSSD(outlierRRI);
+//        double sdnn = filterAndIQR.calculateSDNN(outlierRRI);
         DecimalFormat df = new DecimalFormat("#.##");//設定輸出格式
-        String RMSSD = df.format(rmssd);
-        String SDNN = df.format(sdnn);
+//        String RMSSD = df.format(rmssd);
+//        String SDNN = df.format(sdnn);
 
-        heartBeatCount.setText("RMSSD：" + RMSSD + "\n" + "SDNN：" + SDNN + "\n" + "BPM：" + heart_rate_bpm);
+//        heartBeatCount.setText("RMSSD：" + RMSSD + "\n" + "SDNN：" + SDNN + "\n" + "BPM：" + heart_rate_bpm);
         onPause();
     }
 
@@ -417,7 +417,7 @@ public class SignInActivity extends AppCompatActivity {
      * 上傳量測結果至伺服器
      */
     private void uploadResult() {
-        jsonUpload.jsonUploadToServer(outlierRRI);//上傳完成的RRI
+//        jsonUpload.jsonUploadToServer(outlierRRI);//上傳完成的RRI
     }
 
     /**

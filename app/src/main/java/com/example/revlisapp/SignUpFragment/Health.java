@@ -49,6 +49,8 @@ public class Health extends Fragment {
     List<CheckBox> radiosVaccine;
     String checkedHeart,checkedHbp,checkedSbp,checkedDbp,checkedDia,checkedunit,checkedEmpty,checkedTwohrs,
             checkedMedicine,checkedLow,checkedCovid,checkedVaccine = "";
+
+    private String disease,hbp,diabetes;
     private List<String> checkedFamily;
 
     @Override
@@ -64,7 +66,11 @@ public class Health extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_health, container, false);
+        Bundle bundle = getArguments();
         ButterKnife.bind(this,view);
+        if (bundle != null){
+            setValue(bundle);
+        }
         return view;
     }
 
@@ -168,6 +174,19 @@ public class Health extends Fragment {
         CommonUtil.unCheck(radiosVaccine);
         checkBox.setChecked(true);
         checkedVaccine = CommonUtil.getOne(radiosVaccine);
+    }
+
+    private void setValue(Bundle bundle){
+        disease = bundle.getString("disease");
+        hbp = bundle.getString("hbp");
+        diabetes = bundle.getString("diabetes");
+        if (disease.equals("有")){
+            CheckBox checkBox = radiosHeart.get(0);
+            checkBox.setChecked(true);
+        }else {
+            CheckBox checkBox = radiosHeart.get(1);
+            checkBox.setChecked(true);
+        }
     }
 
 //    public void sendValue(Information.DataReturn dataReturn){

@@ -33,10 +33,11 @@
         android:layout_alignTop="@+id/img_signUpback">
 
         <TextView
+            android:id="@+id/txt_signUPtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_25"
-            android:text="個人資料"
+            android:text="個人資料 Profile"
             android:textSize="@dimen/sp_20"
             android:textColor="@color/gray"
             android:fontFamily="@font/glowsanssc_condensed_book"/>

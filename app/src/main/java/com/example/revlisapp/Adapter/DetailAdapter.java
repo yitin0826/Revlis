@@ -1,5 +1,6 @@
 package com.example.revlisapp.Adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,10 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     public void onBindViewHolder(@NonNull DetailAdapter.ViewHolder holder, int position) {
         holder.txt_title.setText(detailList.get(position).getTitle());
         holder.txt_value.setText(detailList.get(position).getValue());
+        if (holder.txt_value.getText().toString() != "尚未獲取紀錄"){
+            holder.txt_value.setTextColor(Color.parseColor("#6D8B75"));
+            holder.txt_value.setTextSize(30);
+        }
     }
 
     @Override
